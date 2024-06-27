@@ -17,44 +17,37 @@ class ProgrammingLanguagesController < ApplicationController
 
   # GET /programming_languages/1/edit
   def edit
+    @programming_language = ProgrammingLanguage.find(params[:id])
   end
 
   # POST /programming_languages or /programming_languages.json
   def create
     @programming_language = ProgrammingLanguage.new(programming_language_params)
 
-    respond_to do |format|
-      if @programming_language.save
-        format.html { redirect_to programming_language_url(@programming_language), notice: "Programming language was successfully created." }
-        format.json { render :show, status: :created, location: @programming_language }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @programming_language.errors, status: :unprocessable_entity }
-      end
+    if @programming_language.save
+      redirect_to @programming_language, notice: 'Programming language was successfully created.'
+    else
+      render :new
     end
   end
 
   # PATCH/PUT /programming_languages/1 or /programming_languages/1.json
   def update
-    respond_to do |format|
-      if @programming_language.update(programming_language_params)
-        format.html { redirect_to programming_language_url(@programming_language), notice: "Programming language was successfully updated." }
-        format.json { render :show, status: :ok, location: @programming_language }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @programming_language.errors, status: :unprocessable_entity }
-      end
+    @programming_language = ProgrammingLanguage.find(params[:id])
+
+    if @programming_language.update(programming_language_params)
+      redirect_to @programming_language, notice: 'Programming language was successfully updated.'
+    else
+      render :edit
     end
   end
 
   # DELETE /programming_languages/1 or /programming_languages/1.json
   def destroy
-    @programming_language.destroy!
+    @programming_language = ProgrammingLanguage.find(params[:id])
+    @programming_language.destroy
 
-    respond_to do |format|
-      format.html { redirect_to programming_languages_url, notice: "Programming language was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    redirect_to programming_languages_url, notice: 'Programming language was successfully destroyed.'
   end
 
   private

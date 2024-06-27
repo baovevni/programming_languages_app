@@ -1,10 +1,19 @@
-<p style="color: green"><%= notice %></p>
+<p>
+  <strong>Title:</strong>
+  <%= @programming_language.title %>
+</p>
 
-<%= render @programming_language %>
+<p>
+  <strong>Description:</strong>
+  <%= @programming_language.description %>
+</p>
 
-<div>
-  <%= link_to "Edit this programming language", edit_programming_language_path(@programming_language) %> |
-  <%= link_to "Back to programming languages", programming_languages_path %>
+<p>
+  <strong>Link:</strong>
+  <%= link_to @programming_language.link, @programming_language.link %>
+</p>
 
-  <%= button_to "Destroy this programming language", @programming_language, method: :delete %>
-</div>
+<%= link_to 'Edit', edit_programming_language_path(@programming_language) %> |
+<%= link_to 'Back to All Programming Languages', programming_languages_path %>
+
+<%= button_to 'Delete', @programming_language, method: :delete, data: { confirm: 'Are you sure?' } %>

@@ -1,14 +1,29 @@
-<p style="color: green"><%= notice %></p>
+<h1>All Programming Languages</h1>
 
-<h1>Programming languages</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Link</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
 
-<div id="programming_languages">
-  <% @programming_languages.each do |programming_language| %>
-    <%= render programming_language %>
-    <p>
-      <%= link_to "Show this programming language", programming_language %>
-    </p>
-  <% end %>
-</div>
+  <tbody>
+    <% @programming_languages.each do |language| %>
+      <tr>
+        <td><%= language.title %></td>
+        <td><%= language.description %></td>
+        <td><%= link_to 'View', language %></td>
+        <td><%= link_to 'Edit', edit_programming_language_path(language) %></td>
+        <td>
+          <%= button_to 'Delete', language, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
-<%= link_to "New programming language", new_programming_language_path %>
+<br>
+<%= link_to 'New Programming Language', new_programming_language_path %>
