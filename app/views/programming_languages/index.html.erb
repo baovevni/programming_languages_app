@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Programming languages</h1>
+
+<div id="programming_languages">
+  <% @programming_languages.each do |programming_language| %>
+    <%= render programming_language %>
+    <p>
+      <%= link_to "Show this programming language", programming_language %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New programming language", new_programming_language_path %>
